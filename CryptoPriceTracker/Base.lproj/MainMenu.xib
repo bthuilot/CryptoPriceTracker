@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="CryptoPriceTracker" customModuleProvider="target">
+            <connections>
+                <outlet property="coinMenu" destination="Dyl-Zs-2bI" id="6P1-hH-SvS"/>
+                <outlet property="quitClicked" destination="YUY-TB-szu" id="e9R-Yd-ofV"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu id="Dyl-Zs-2bI">
+            <items>
+                <menuItem title="Change Coin" id="xCO-77-Kyf">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Change Coin" id="cqm-qP-EBX">
+                        <items>
+                            <menuItem title="Bitcoin (BTC)" id="5q6-i7-wxc">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="changeToBTC:" target="Voe-Tx-rLC" id="x8W-O9-MvG"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Ethereum (ETH)" id="0YQ-zZ-L3g">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="changeToETH:" target="Voe-Tx-rLC" id="rz8-j6-fje"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Litecoin (LTC)" id="Kib-Na-KSF">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="changeToLTC:" target="Voe-Tx-rLC" id="Hp3-zz-9xe"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Refresh" id="q2e-Tn-Vd8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="refreshPrice:" target="Voe-Tx-rLC" id="eCu-nr-2Yg"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Quit" id="YUY-TB-szu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitClicked:" target="Voe-Tx-rLC" id="JaC-RK-XzS"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-269" y="153"/>
+        </menu>
+    </objects>
+</document>

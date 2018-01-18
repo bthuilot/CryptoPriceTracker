@@ -16,6 +16,10 @@ To install simply download the .App file and place it into your /Applications fo
 To use, simply open the application and it will display on the status bar
 Use the drop down menu to change which coin to track
 
+![Bitcoin](https://raw.githubusercontent.com/bthuilot/CryptoPriceTracker/master/Photos/Bitcoin.png)
+
+![Ethereum](https://raw.githubusercontent.com/bthuilot/CryptoPriceTracker/master/Photos/Ethereum.png)
+
 ### License
 
 CryptoPriceTracker is released under the MIT license. See [LICENSE ](https://github.com/bthuilot/CryptoPriceTracker) for details.

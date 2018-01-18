@@ -71,10 +71,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @objc func updatePriceTimer(timer: Timer){
         // Get coin from timer
-        let coin = timer.userInfo as! String
+        let userDefaults = timer.userInfo as! UserDefaults
+        let coin = userDefaults.string(forKey: "coin")
         
         // call to updatePrice
-        self.updatePrice(coin: coin)
+        self.updatePrice(coin: coin!)
         
     }
     
@@ -83,23 +84,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Url used for HTTP Get call
         Alamofire.request("https://min-api.cryptocompare.com/data/price?fsym=\(coin)&tsyms=USD").responseJSON { response in
             
-            // Serialize JSON
-            if let json = response.result.value as? [String: Any],
-                let currentPrice = json["USD"] as? [[String: Any]]{
-                self.setPrice(price: "\(currentPrice)")
+            // In case of error
+            if response.result.value is NSNull {
+                return
             }
+            
+            // Find and set price
+            let JSON = response.result.value as? NSDictionary
+            let price = JSON?["USD"] as! NSNumber
+            self.setPrice(price: "$\(price)")
         }
     }
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Add a temp title
-        tracker.title = "Checking..."
+        tracker.title = ""
         
-        // Set value for icon
-        let icon = NSImage(named: NSImage.Name(rawValue: "BTCsmall"))
-        icon?.isTemplate = true
-        tracker.image = icon
         
         // Add drop down menu
         tracker.menu = coinMenu
@@ -109,9 +110,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             userDefaults.set("BTC", forKey: "coin")
         }
         
+        // Set value for icon
+        let icon = NSImage(named: NSImage.Name(rawValue: "\(userDefaults.string(forKey: "coin") ?? "BTC")small"))
+        icon?.isTemplate = true
+        tracker.image = icon
         
         // Set up timer to check every 5 seconds
-        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updatePriceTimer), userInfo: userDefaults.string(forKey: "coin"), repeats: true)
+        _ = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(updatePriceTimer), userInfo: userDefaults, repeats: true)
     }
     
     // Sets the current price of checked coin, given a String of current price

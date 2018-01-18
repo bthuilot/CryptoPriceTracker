@@ -8,7 +8,7 @@
 
 ### Installation
 
-See the releases section for current release version
+To install simply download the .App file and place it into your /Applications folder. See the releases section for current release version.
 
 
 ### Usage
